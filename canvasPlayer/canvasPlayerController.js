@@ -7,6 +7,13 @@
 */
 
 'use strict';
+/* EFFECTS */
+var effects = {
+  GRAYSCALE: 1,
+  PIXELSINVERTED: 2,
+};
+
+
 var canvasPlayerController = {
   canvas: null,
   canvasSelector: null,
@@ -14,6 +21,8 @@ var canvasPlayerController = {
   player: null,
   playerSelector: null,
   interactions: [],
+  effects: [],
+  imgData : null,
 };
 
 /**
@@ -41,7 +50,15 @@ canvasPlayerController.configureCanvasSize = function () {
 };
 
 canvasPlayerController.draw = function () {
+  if(canvasPlayerController.player.paused || canvasPlayerController.player.ended) return false;
   canvasPlayerController.ctx.drawImage(canvasPlayerController.player, 0, 0);
+  console.log(canvasPlayerController.ctx);
+  if (canvasPlayerController.effects.length > 0) {
+    canvasPlayerController.imgData = canvasPlayerController.ctx.getImageData(0, 0, canvasPlayerController.canvas.width, canvasPlayerController.canvas.height);
+    //canvasPlayerController.ctx.putImageData(transformsInGrayScale(canvasPlayerController.imgData), 0, 0);
+    canvasPlayerController.ctx.putImageData(pixelsInverter(canvasPlayerController.imgData), 0, 0);
+    console.log("transformou!");
+  }
   //####### ATENTION! ##########
   //it is the line below that makes the canvas be updated and display
   //the images as a video.
@@ -81,6 +98,53 @@ canvasPlayerController.checkInteractions = function () {
   }
   //canvasPlayerController.checkInteractions();
 };
+
+/*############ EFFECTS ##############*/
+
+canvasPlayerController.addEffect = function (effect) {
+  this.effects.push({effect: effect});
+};
+
+function transformsInGrayScale(imgData){
+  //retrieve the pixels
+  //each pixel has 4 components (red, green, blue, alpha) so:
+  var numPixels =    imgData.data.length / 4;
+  for(var i = 0; i < numPixels; i++){
+      //one pixel = [red (index 0), green (index 1), blue (index 2), alpha (index 3)]
+      //gets the data (rgbA) from a pixel
+      var red = imgData.data[i * 4 + 0];//red (index 0)
+      var green = imgData.data[i * 4 + 1];//green (index 1)
+      var blue = imgData.data[i * 4 + 2];//blue (index 2)
+      var alpha = imgData.data[i * 4 + 3];//alpha (index 3)
+      //transforms in gray
+      //var gray = (0.3 * red) + (0.59 * green) + (0.11 * blue);
+      var gray = (red + green + blue) / 3;
+      //puts the gray scale on each pixel color
+      imgData.data[i * 4 + 0] = gray;//red
+      imgData.data[i * 4 + 1] = gray;//blue
+      imgData.data[i * 4 + 2] = gray;//green
+      imgData.data[i * 4 + 3] = gray;//alpha (index 3)
+  }
+  return imgData;
+}
+
+
+function pixelsInverter(imgData){
+  //retrieve the pixels
+  //each pixel has 4 components (red, green, blue, alpha) so:
+  var numPixels =    imgData.data.length / 4;
+  for(var i = 0; i < numPixels; i++){
+      //one pixel = [red (index 0), green (index 1), blue (index 2), alpha (index 3)]
+      //gets the data (rgbA) from a pixel and alter it
+      imgData.data[i * 4 + 0] = 255 - imgData.data[i * 4 + 0];//red (index 0)
+      imgData.data[i * 4 + 1] = 255 - imgData.data[i * 4 + 1];//green (index 1)
+      imgData.data[i * 4 + 2] = 255 - imgData.data[i * 4 + 2];//blue (index 2)
+  }
+  //ctx.putImageData(imgData, 0, 0);
+  return imgData;
+}
+
+
 //####################################
 // FIM DAS FUNCOES
 //####################################
@@ -90,3 +154,4 @@ canvasPlayerController.canvasSelector = '#c';
 canvasPlayerController.playerSelector = '#v';
 canvasPlayerController.init();
 canvasPlayerController.addInteraction(6);
+//setTimeout(function(){canvasPlayerController.addEffect(effects.GRAYSCALE);}, 3000);
