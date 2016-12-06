@@ -23,6 +23,8 @@ var canvasPlayerController = {
   interactions: [],
   effects: [],
   imgData : null,
+  grayscale: false,
+  pixelsinverted: false,
 };
 
 /**
@@ -52,12 +54,13 @@ canvasPlayerController.configureCanvasSize = function () {
 canvasPlayerController.draw = function () {
   if(canvasPlayerController.player.paused || canvasPlayerController.player.ended) return false;
   canvasPlayerController.ctx.drawImage(canvasPlayerController.player, 0, 0);
-  console.log(canvasPlayerController.ctx);
-  if (canvasPlayerController.effects.length > 0) {
+  if (canvasPlayerController.grayscale) {
     canvasPlayerController.imgData = canvasPlayerController.ctx.getImageData(0, 0, canvasPlayerController.canvas.width, canvasPlayerController.canvas.height);
-    //canvasPlayerController.ctx.putImageData(transformsInGrayScale(canvasPlayerController.imgData), 0, 0);
+    canvasPlayerController.ctx.putImageData(transformsInGrayScale(canvasPlayerController.imgData), 0, 0);
+  }
+  if (canvasPlayerController.pixelsinverted) {
+    canvasPlayerController.imgData = canvasPlayerController.ctx.getImageData(0, 0, canvasPlayerController.canvas.width, canvasPlayerController.canvas.height);
     canvasPlayerController.ctx.putImageData(pixelsInverter(canvasPlayerController.imgData), 0, 0);
-    console.log("transformou!");
   }
   //####### ATENTION! ##########
   //it is the line below that makes the canvas be updated and display
@@ -98,6 +101,21 @@ canvasPlayerController.checkInteractions = function () {
   }
   //canvasPlayerController.checkInteractions();
 };
+
+canvasPlayerController.pixelsinvertedToggle = function (){
+  console.log("invertendo");
+   canvasPlayerController.pixelsinverted = !canvasPlayerController.pixelsinverted;
+};
+
+canvasPlayerController.grayScaleToggle = function (){
+  console.log("invertendo");
+   canvasPlayerController.grayscale = !canvasPlayerController.grayscale;
+};
+
+canvasPlayerController.play = function () {
+  canvasPlayerController.player.play();
+};
+
 
 /*############ EFFECTS ##############*/
 
@@ -154,4 +172,4 @@ canvasPlayerController.canvasSelector = '#c';
 canvasPlayerController.playerSelector = '#v';
 canvasPlayerController.init();
 canvasPlayerController.addInteraction(6);
-//setTimeout(function(){canvasPlayerController.addEffect(effects.GRAYSCALE);}, 3000);
+setTimeout(function(){canvasPlayerController.addEffect(effects.GRAYSCALE);}, 3000);

@@ -3,8 +3,12 @@
 <head>
 </head>
 <body>
-  <video id='v' controls loop src='What_Happened_1901.mp4'></video>
-  <canvas id='c' width='600' height='375'></canvas>
+  <!-- <video id='v' controls loop src='What_Happened_1901.mp4'></video>-->
+  <video id='v' controls loop src='1.avi'></video>
+  <canvas id='c' width='1024' height='768'></canvas>
   <script src='canvasPlayerController.js'></script>
+  <button onclick="canvasPlayerController.play();">Play</button>
+  <button onclick="canvasPlayerController.pixelsinvertedToggle();">Pixel Inverter</button>
+  <button onclick="canvasPlayerController.grayScaleToggle();">GrayScale</button>
 </body>
 </html>
