@@ -7,7 +7,7 @@ var ctx = canvas.getContext('2d');
 ctx.strokeStyle = 'black';
 ctx.lineWidth = 4;
 
-const squareSize = 60;
+const squareSize = 30;
 const canvasSize = 600; //assuming it is a square
 //draw lines
 for (var i = 0; i < canvasSize; i += squareSize)
