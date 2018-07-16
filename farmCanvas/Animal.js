@@ -7,6 +7,11 @@ var Animal = class
         this.currentY = currentY;
         this.width = width;
         this.height = height;
+        //an monkey moves vertically more than a cow, so it is necessary to define limit for those values
+        this.maxHorizontallyMoveDistance = 100; //how much an animal can move horizontally each time
+        this.maxVerticallyMoveDistance = 100; //how much an animal can move vertically each time
+
+        this.updated = false; //was updated since last iteraction?
     }
 
     /**
@@ -16,7 +21,9 @@ var Animal = class
      */
     MoveHorizontally(distance)
     {
+        if (distance <= this.maxHorizontallyMoveDistance)// it is necessary to work with negative numbers..
         this.currentX += distance;
+        this.updated = true;
     }
 
     /**
@@ -26,7 +33,9 @@ var Animal = class
      */
     MoveVertically(distance)
     {
+        //if (distance <= this.maxVerticallyMoveDistance)// it is necessary to work with negative numbers..
         this.currentY += distance;
+        this.updated = true;
     }
 
     
@@ -34,6 +43,7 @@ var Animal = class
      
     Draw(canvasContext)
     {
+        this.updated = false;
         canvasContext.save();
         canvasContext.fillStyle="#FF0000";
         canvasContext.fillRect(this.currentX, this.currentY, this.width, this.height);

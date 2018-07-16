@@ -9,20 +9,31 @@ ctx.lineWidth = 4;
 
 const squareSize = 30;
 const canvasSize = 600; //assuming it is a square
+
+
 //draw lines
-for (var i = 0; i < canvasSize; i += squareSize)
+function DrawBoard ()
 {
-    ctx.moveTo(i, 0);
-    ctx.lineTo(i, canvasSize);
-    ctx.stroke();
-}
-for (var j = 0; j < canvasSize; j += squareSize)
-{
-    ctx.moveTo(0, j);
-    ctx.lineTo(canvasSize, j);
-    ctx.stroke();
+    for (var i = 0; i < canvasSize; i += squareSize)
+    {
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, canvasSize);
+        ctx.stroke();
+    }
+    for (var j = 0; j < canvasSize; j += squareSize)
+    {
+        ctx.moveTo(0, j);
+        ctx.lineTo(canvasSize, j);
+        ctx.stroke();
+    }
 }
 
 var animal = new Animal(20, 40);
 
-animal.Draw(ctx);
+setInterval(function () {
+    console.log("Drawing");
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    DrawBoard();
+    animal.Draw(ctx);
+
+}, 1000);
