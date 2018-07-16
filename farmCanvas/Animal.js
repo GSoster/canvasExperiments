@@ -1,12 +1,13 @@
-var Animal = class 
+class Animal 
 {
 
-    constructor(currentX, currentY, width = 30, height = 30)
+    constructor(name, currentX, currentY)
     {
+        this.name = name;
         this.currentX = currentX;
         this.currentY = currentY;
-        this.width = width;
-        this.height = height;
+        this.width = 30;
+        this.height = 30;
         //an monkey moves vertically more than a cow, so it is necessary to define limit for those values
         this.maxHorizontallyMoveDistance = 100; //how much an animal can move horizontally each time
         this.maxVerticallyMoveDistance = 100; //how much an animal can move vertically each time
@@ -37,10 +38,11 @@ var Animal = class
         this.currentY += distance;
         this.updated = true;
     }
-
     
-     //* Renders the graphic representation of this objetc
-     
+    /**
+     * Renders the graphic representation of this object
+     * @param {canvasContext2D}
+     */
     Draw(canvasContext)
     {
         this.updated = false;

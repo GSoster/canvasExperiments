@@ -28,12 +28,13 @@ function DrawBoard ()
     }
 }
 
-var animal = new Animal(20, 40);
-
+var animal = new Animal('Animal', 20, 40);
+var sheep = new Sheep('Sheep', 120, 90);
 setInterval(function () {
     console.log("Drawing");
     ctx.clearRect(0, 0, canvasSize, canvasSize);
     DrawBoard();
     animal.Draw(ctx);
+    sheep.Draw(ctx);
 
 }, 1000);
