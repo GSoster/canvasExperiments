@@ -22,3 +22,7 @@ for (var j = 0; j < canvasSize; j += squareSize)
     ctx.lineTo(canvasSize, j);
     ctx.stroke();
 }
+
+var animal = new Animal(20, 40);
+
+animal.Draw(ctx);
