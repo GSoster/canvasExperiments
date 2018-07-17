@@ -39,6 +39,20 @@ class Animal
         this.updated = true;
     }
     
+
+    /**
+     * Makes the animal move randomly in any direction
+     * TODO: Can be improved by using - to make the movement be to both sides up/down
+     */
+    Stray () 
+    {
+        let minDistance = 0;
+        let xDistance = Math.floor(Math.random() * (this.maxHorizontallyMoveDistance - minDistance + 1)) + minDistance;
+        let yDistance = Math.floor(Math.random() * (this.maxVerticallyMoveDistance - minDistance + 1)) + minDistance;
+        this.MoveHorizontally(xDistance);
+        this.MoveVertically(yDistance);
+    }
+
     /**
      * Renders the graphic representation of this object
      * @param {canvasContext2D}
