@@ -11,14 +11,17 @@ var board = new Board(600, 600);
 var animal = new Animal('Animal', 20, 40);
 var sheep = new Sheep('Sheep', 120, 90);
 
-
-function GraphicUpdate (ctx)
+/**
+ * Updates Graphically all elements 
+ * @param {CanvasRenderingContext2D} canvasContext 
+ */
+function GraphicUpdate (canvasContext)
 {
     console.log("Graphic Update");
-    board.Clear(ctx);
-    board.Draw(ctx);
-    animal.Draw(ctx);
-    sheep.Draw(ctx);
+    board.Clear(canvasContext);
+    board.Draw(canvasContext);
+    animal.Draw(canvasContext);
+    sheep.Draw(canvasContext);
 }
 
 
@@ -33,5 +36,5 @@ function LogicUpdate ()
 // Game LOOP
 setInterval(function () {
     LogicUpdate();
-    GraphicUpdate();
+    GraphicUpdate(ctx);
 }, 1000);

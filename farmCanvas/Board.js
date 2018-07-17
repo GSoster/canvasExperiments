@@ -10,7 +10,7 @@ class Board
 
     /**
      * Draw columns and lines to the canvas
-     * @param {*} canvasContext 
+     * @param {CanvasRenderingContext2D} canvasContext 
      */
     Draw (canvasContext)
     {
@@ -37,7 +37,7 @@ class Board
 
     /**
      * Clear Canvas
-     * @param {*} canvasContext 
+     * @param {CanvasRenderingContext2D} canvasContext 
      */
     Clear(canvasContext)
     {

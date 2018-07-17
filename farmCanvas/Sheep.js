@@ -7,7 +7,7 @@ class Sheep extends Animal
 
     /**
      * Renders the graphic representation of this object
-     * @param {canvasContext2D}
+     * @param {CanvasRenderingContext2D}
      */
     Draw(canvasContext)
     {
