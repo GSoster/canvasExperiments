@@ -3,7 +3,7 @@ class Sprite
     constructor(imageLocation, width, height)
     {
         var img = new Image();
-        img.onload = function () {this.imageLoaded = true;alert("LOADED!");};
+        img.onload = function () {this.imageLoaded = true;};
         img.src = imageLocation;
         this.image = img;        
         this.width = 32;

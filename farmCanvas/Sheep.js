@@ -7,7 +7,6 @@ class Sheep extends Animal
         this.isImageLoaded = false;
         img.onload = function(){            
             this.isImageLoaded = true;
-            alert("FOI? " + this.isImageLoaded);
         }
         img.src = "./images/sheep_walk.png";
         this.image = img;

@@ -20,16 +20,30 @@ class Animal
     }
 
     /**
+     * For internal Use:
+     * Only updates the movement value IF the movement + the distance is 
+     * inside the boards.
+     * @param {int} currentValue (this.currentX or this.currentY)
+     * @param {int} minValue  (this.minX or this.minY)
+     * @param {int} maxValue (this.maxX or this.maxY)
+     * @param {int} distance 
+     */
+    Move(currentValue, minValue, maxValue, distance)
+    {
+        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+        if ( (currentValue + distance * plusOrMinus) > minValue &&  (currentValue + distance * plusOrMinus) < maxValue)
+            currentValue += distance * plusOrMinus;        
+        return currentValue;
+    }
+
+    /**
      * Distance can be a positive int (move right)
      * or a negative int (move left)
      * @param {int} distance 
      */
     MoveHorizontally(distance)
     {
-        //if (distance <= this.maxHorizontallyMoveDistance)// it is necessary to work with negative numbers..
-        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-        if (((this.currentX + distance * plusOrMinus) > this.maxX) || ((this.currentX + distance * plusOrMinus) < this.minX)) distance = (-distance);        
-        this.currentX += (distance * plusOrMinus);
+        this.currentX = this.Move(this.currentX, this.minX, this.maxX, distance)
         this.updated = true;
     }
 
@@ -40,17 +54,13 @@ class Animal
      */
     MoveVertically(distance)
     {
-        //if (distance <= this.maxVerticallyMoveDistance)// it is necessary to work with negative numbers..
-        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-        if (((this.currentY + distance * plusOrMinus) > this.maxY) || ((this.currentY + distance * plusOrMinus) < this.minY))  distance = (-distance);
-        this.currentY += (distance * plusOrMinus);
+        this.currentY = this.Move(this.currentY, this.minY, this.maxY, distance)
         this.updated = true;
     }
     
 
     /**
      * Makes the animal move randomly in any direction
-     * TODO: Can be improved by using - to make the movement be to both sides up/down
      */
     Stray () 
     {
