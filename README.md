@@ -15,3 +15,5 @@ Examples and experiments with canvas:<br>
  - [ ] Exibir texto (pergunta);  
  - [ ] Exibir botões/mapear cliques;  
  - [ ] Controle de fluxo: executar/voltar video baseado nas respostas (cliques nos botões);  
+
+All Assets come from: https://opengameart.org/content/lpc-style-farm-animals
