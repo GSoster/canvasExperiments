@@ -8,9 +8,7 @@ class Chicken extends Animal
 
     Draw (canvasContext)
     {
-        this.updated = false;
-        //this.sprite.Render(canvasContext, this.currentX, this.currentY);
-        //canvasContext.drawImage(this.sprite.image, this.currentX, this.currentY);
-        canvasContext.drawImage(this.sprite.image, 0, 0, this.sprite.width, this.sprite.height, this.currentX, this.currentY, this.sprite.width, this.sprite.height);
+        this.updated = false;                
+        canvasContext.drawImage(this.sprite.image, 0, 0, this.sprite.width, this.sprite.height, this.currentX, this.currentY, this.sprite.width, this.sprite.height);        
     }
 }
