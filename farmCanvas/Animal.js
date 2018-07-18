@@ -27,8 +27,9 @@ class Animal
     MoveHorizontally(distance)
     {
         //if (distance <= this.maxHorizontallyMoveDistance)// it is necessary to work with negative numbers..
-        if (((this.currentX + distance) > this.maxX) || ((this.currentX + distance) < this.minX)) distance = (-distance);
-        this.currentX += distance;
+        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+        if (((this.currentX + distance * plusOrMinus) > this.maxX) || ((this.currentX + distance * plusOrMinus) < this.minX)) distance = (-distance);        
+        this.currentX += (distance * plusOrMinus);
         this.updated = true;
     }
 
@@ -40,8 +41,9 @@ class Animal
     MoveVertically(distance)
     {
         //if (distance <= this.maxVerticallyMoveDistance)// it is necessary to work with negative numbers..
-        if (((this.currentY + distance) > this.maxY) || ((this.currentY + distance) < this.minY))  distance = (-distance);
-        this.currentY += distance;
+        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+        if (((this.currentY + distance * plusOrMinus) > this.maxY) || ((this.currentY + distance * plusOrMinus) < this.minY))  distance = (-distance);
+        this.currentY += (distance * plusOrMinus);
         this.updated = true;
     }
     

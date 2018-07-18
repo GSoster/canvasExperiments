@@ -17,7 +17,7 @@ var chicken = new Chicken('Chicken', 30, 50);
  */
 function GraphicUpdate (canvasContext)
 {
-    console.log("Graphic Update");
+    //console.log("Graphic Update");
     board.Clear(canvasContext);
     board.Draw(canvasContext);
     animal.Draw(canvasContext);
@@ -28,7 +28,7 @@ function GraphicUpdate (canvasContext)
 
 function LogicUpdate ()
 {
-    console.log("Logic Update");
+    //console.log("Logic Update");
     animal.Stray();
     sheep.Stray();
     chicken.Stray();

@@ -28,8 +28,7 @@ class Sheep extends Animal
 
         //if (this.isImageLoaded)
         //{
-            //console.log("Image loaded!");
-            console.log(this.spriteSize);
+            //console.log("Image loaded!");            
             canvasContext.drawImage(this.image, 0, 0, this.spriteSize, this.spriteSize, this.currentX, this.currentY, this.spriteSize, this.spriteSize);
         //}
         //else
