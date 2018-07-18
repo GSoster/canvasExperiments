@@ -6,6 +6,8 @@ class Animal
         this.name = name;
         this.currentX = currentX;
         this.currentY = currentY;
+        this.maxX = 600; //how far can an animal go
+        this.maxY = 600;
         this.width = 30;
         this.height = 30;
         //an monkey moves vertically more than a cow, so it is necessary to define limit for those values
@@ -22,7 +24,8 @@ class Animal
      */
     MoveHorizontally(distance)
     {
-        if (distance <= this.maxHorizontallyMoveDistance)// it is necessary to work with negative numbers..
+        //if (distance <= this.maxHorizontallyMoveDistance)// it is necessary to work with negative numbers..
+        if ((this.currentX += distance) > this.maxX) return;
         this.currentX += distance;
         this.updated = true;
     }
@@ -35,6 +38,7 @@ class Animal
     MoveVertically(distance)
     {
         //if (distance <= this.maxVerticallyMoveDistance)// it is necessary to work with negative numbers..
+        if ((this.currentY += distance) > this.maxY) return;
         this.currentY += distance;
         this.updated = true;
     }

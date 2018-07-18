@@ -35,6 +35,6 @@ function LogicUpdate ()
 
 // Game LOOP
 setInterval(function () {
-    //LogicUpdate();
+    LogicUpdate();
     GraphicUpdate(ctx);
 }, 1000);
