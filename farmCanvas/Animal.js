@@ -26,9 +26,10 @@ class Animal
      * @param {int} currentValue (this.currentX or this.currentY)
      * @param {int} minValue  (this.minX or this.minY)
      * @param {int} maxValue (this.maxX or this.maxY)
-     * @param {int} distance 
+     * @param {int} distance (the distance that we want to move)
+     * @param {int} size (the size of the graphic element: width for horizontal/x movement, height for vertical/y movement)
      */
-    Move(currentValue, minValue, maxValue, distance)
+    Move(currentValue, minValue, maxValue, distance, size)
     {
         var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
         if ( (currentValue + distance * plusOrMinus) > minValue &&  (currentValue + distance * plusOrMinus) < maxValue)
@@ -43,7 +44,7 @@ class Animal
      */
     MoveHorizontally(distance)
     {
-        this.currentX = this.Move(this.currentX, this.minX, this.maxX, distance)
+        this.currentX = this.Move(this.currentX, this.minX, this.maxX, distance, this.width)
         this.updated = true;
     }
 
@@ -54,7 +55,7 @@ class Animal
      */
     MoveVertically(distance)
     {
-        this.currentY = this.Move(this.currentY, this.minY, this.maxY, distance)
+        this.currentY = this.Move(this.currentY, this.minY, this.maxY, distance, this.height)
         this.updated = true;
     }
     
