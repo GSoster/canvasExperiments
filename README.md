@@ -17,3 +17,8 @@ Examples and experiments with canvas:<br>
  - [ ] Controle de fluxo: executar/voltar video baseado nas respostas (cliques nos botões);  
 
 All Assets come from: https://opengameart.org/content/lpc-style-farm-animals
+
+lidar com Sprites:
+https://www.kirupa.com/canvas/sprite_animations_canvas.htm
+http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation/
+https://jlongster.com/Making-Sprite-based-Games-with-Canvas

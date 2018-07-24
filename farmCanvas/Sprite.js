@@ -13,7 +13,9 @@ class Sprite
         this.height = 32;
         this.frames = 1; // total number of frames
         this.frameIndex = 1;
-        this.isLoop = false; //should restart after currentFrame = frames?
+        this.isLoop = false; // should restart after currentFrame = frames?
+        this.pixelSpacing = 0; // difference in pixels from one sprite to another
+        this.xDrawPosition = 0; // where to start drawing
     }
 
     /**
@@ -22,16 +24,12 @@ class Sprite
      * @param {int} posX 
      * @param {int} posY 
      */
-    Render (canvasContext, posX, posY)
+    Update ()
     {   
+        this.frameIndex ++;
+        if (this.frameIndex > this.frames)   this.frameIndex = 0;
+        this.xDrawPosition = this.frameIndex * this.width + this.pixelSpacing;
         //let sourceX = this.frameIndex * this.width; // from where in the image should start drawing
-        //canvasContext.rect(posX, posY, this.width, this.height);
-        //console.log(canvasContext, posX, posY, '########');
-        //canvasContext.drawImage(this.image, 0, 0, this.width, this.height, this.posX, this.posY, this.width, this.height);
-        try{
-            canvasContext.drawImage(this.image, this.posX, this.posY);
-        }catch(e){console.log(e);}
         
-        //console.log(document.getElementById('chicken'));
     }
 }
