@@ -17,6 +17,17 @@ class Animal
         this.maxVerticallyMoveDistance = 100; //how much an animal can move vertically each time
 
         this.updated = false; //was updated since last iteraction?
+
+        this.continuousDirectionMovement = 3; // how many times the animal has to go to the same direction
+        this.currentContinousDirectionMovementCounter = 0; // how many times the animal actually went in the same direction
+        this.positionEnum = 
+        {
+            TOP: 0,
+            LEFT: 1,
+            DOWN: 2,
+            RIGHT: 3
+        };
+        this.currentMovementPosition = this.positionEnum.TOP;
     }
 
     /**
@@ -33,7 +44,7 @@ class Animal
     {
         var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
         if ( (currentValue + distance * plusOrMinus) > minValue &&  (currentValue + distance * plusOrMinus) < maxValue)
-            currentValue += distance * plusOrMinus;        
+            currentValue += distance * plusOrMinus;
         return currentValue;
     }
 
@@ -68,8 +79,20 @@ class Animal
         let minDistance = 0;
         let xDistance = Math.floor(Math.random() * (this.maxHorizontallyMoveDistance - minDistance + 1)) + minDistance;
         let yDistance = Math.floor(Math.random() * (this.maxVerticallyMoveDistance - minDistance + 1)) + minDistance;
-        this.MoveHorizontally(xDistance);
-        this.MoveVertically(yDistance);
+        // moves only in one direction
+        if (this.currentMovementPosition == this.positionEnum.LEFT || this.currentMovementPosition == this.positionEnum.RIGHT)
+            this.MoveHorizontally(xDistance);
+        else
+            this.MoveVertically(yDistance);
+
+        if (this.currentContinousDirectionMovementCounter >= this.continuousDirectionMovement)
+        {
+            this.continuousDirectionMovement = Math.floor(Math.random() * (3)) + 1;
+            this.currentMovementPosition = this.continuousDirectionMovement;
+        }
+        console.log(this.continuousDirectionMovement);
+        this.currentContinousDirectionMovementCounter++;
+
     }
 
     /**
