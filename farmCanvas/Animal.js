@@ -87,8 +87,8 @@ class Animal
 
         if (this.currentContinousDirectionMovementCounter >= this.continuousDirectionMovement)
         {
-            this.continuousDirectionMovement = Math.floor(Math.random() * (3)) + 1;
-            this.currentMovementPosition = this.continuousDirectionMovement;
+            this.currentMovementPosition = Math.floor(Math.random() * (3)) + 1;// same number of possibilities that exists in the enum
+            this.continuousDirectionMovement = this.currentMovementPosition * 3;
         }
         console.log(this.continuousDirectionMovement);
         this.currentContinousDirectionMovementCounter++;
