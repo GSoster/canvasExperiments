@@ -15,7 +15,9 @@ class Sprite
         this.frameIndex = 1;
         this.isLoop = false; // should restart after currentFrame = frames?
         this.pixelSpacing = 0; // difference in pixels from one sprite to another
-        this.xDrawPosition = 0; // where to start drawing
+        this.xDrawPosition = 0; // where to start drawing in the image/sprite
+        this.yDrawPosition = 0; // where to start drawing in the image/sprite
+        this.row = 0; // which row from the sprite to draw
     }
 
     /**
@@ -27,8 +29,9 @@ class Sprite
     Update ()
     {   
         this.frameIndex ++;
-        if (this.frameIndex > this.frames)   this.frameIndex = 0;
+        if (this.frameIndex > this.frames)   this.frameIndex = 0;        
         this.xDrawPosition = this.frameIndex * this.width + this.pixelSpacing;
+        this.yDrawPosition = this.row * this.height;
         //let sourceX = this.frameIndex * this.width; // from where in the image should start drawing
         
     }
