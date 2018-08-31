@@ -108,4 +108,12 @@ class Animal
         canvasContext.restore();
     }
 
+    /**
+     * Displays a personalized animation on death
+     */
+    Die()
+    {
+
+    }
+
 }
